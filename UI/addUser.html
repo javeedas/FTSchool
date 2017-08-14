@@ -3,6 +3,7 @@
     <form name="addUserForm" class="form-horizontal"  style="margin-top:100px" novalidate>
         <div class="container">
 
+            <!--name-->
             <div class="row">
                 <div class="form-group" ng-class="{'has-error':addUserForm.name.$invalid && !addUserForm.name.$pristine }">
                     <label for="name" class="col-md-4 control-label">Name</label>
@@ -14,6 +15,7 @@
                     </div>
                 </div>
             </div>
+            <!--username-->
             <div class="row">
                 <div class="form-group" ng-class="{'has-error':addUserForm.username.$invalid && !addUserForm.username.$pristine }">
                     <label for="username" class="col-md-4 control-label">UserName</label>
@@ -25,6 +27,7 @@
                     </div>
                 </div>
             </div>
+            <!--password-->
             <div class="row">
                 <div class="form-group" ng-class="{'has-error':addUserForm.password.$invalid && !addUserForm.password.$pristine}">
                     <label for="password" class="col-md-4 control-label">Password</label>
@@ -37,22 +40,20 @@
 
                 </div>
             </div>
-
-            <div class="row" ng-controller="datepickerCtrl as ctrl">
+            <!--dob-->
+            <div class="row">
                 <div class="form-group" ng-class="{'has-error':addUserForm.dob.$invalid && !addUserForm.dob.$pristine }">
                     <label for="dob" class="col-md-4 control-label">DateOfBirth</label>
                     <div class="col-md-4"> 
                        
-                            <md-datepicker ng-model="ctrl.dob" md-placeholer="Date Of Birth" md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"></md-datepicker>
-                        
+                            <!--<md-datepicker ng-model="ctrl.dob" md-placeholer="Date Of Birth" md-min-date="ctrl.minDate" md-max-date="ctrl.maxDate"></md-datepicker>-->
+                        <input type="date" class="form-control" id="dob" name="dob"   ng-model="dob" 
+                               placeholder="dd-MM-yyyy" min="2013-01-01" required  />
                         <p ng-show="addUserForm.dob.$invalid && !addUserForm.dob.$pristine" class="help-block">dateof birth is required.</p>
                     </div>
                 </div>
             </div>
-
-
-
-
+            <!--radio button-->
             <div class="row">
                 <div class="form-group">
                     <label for="" class="col-md-4 control-label">Role:</label>
@@ -67,8 +68,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row">
+            <!--dropdown-->
+            <!--<div class="row">
                 <div class="form-group">
                     <label for="" class="col-md-4 control-label">Tool</label>
                     <div class="col-md-4">
@@ -83,15 +84,35 @@
                         </div>
                     </div>
                 </div>
+            </div>-->
+            <!--checkboxes-->
+            <div class="row">
+                <div class="form-group">
+                    <label for="" class="col-md-4 control-label">Tool:</label>
+                    <div class="col-md-4">
+                        <label  class="checkbox-inline" ng-repeat="tool in tools">
+                            <input type="checkbox" 
+                                   name="selectedTools[]"
+                                   value="{{tool}}"
+                                   ng-checked="selection.indexOf(tool) > -1"
+                                   ng-click="toggleSelection(tool)"> {{tool}}
+                        </label>
+                    </div>
+                </div>
             </div>
+           
+            <!--submit and reset-->
             <div class="row">
                 <div class="form-group">
                     <label class="col-md-4 control-label"></label>
                     <div class="col-md-4">
                         <button type="submit" id="btnsubmiteForm" class="btn btn-success" ng-disabled="addUserForm.$invalid" ng-click="addUser()">Submit</button>
+                        <button type="reset"  id="btnresetForm"   class="btn btn-danger"  ng-click="reset()">Reset</button>           
                     </div>
                 </div>
             </div>
+
+            
 
         </div>
 

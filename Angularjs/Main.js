@@ -1,6 +1,6 @@
 ﻿var ftmsapp = angular.module('ftms', ['ftms.controllers', 'ftms.Services', 'ngRoute']);
 
-ftmsapp.config(function ($routeProvider,$locationProvider) {
+ftmsapp.config(function ($routeProvider, $locationProvider) {
     //use the HTML5 History API to remove '# tag in URL
     $locationProvider.html5Mode(true);
 
@@ -16,15 +16,15 @@ ftmsapp.config(function ($routeProvider,$locationProvider) {
     })
     .when('/Home', {
         resolve: {
-            "check": function ($location,$rootScope) {
+            "check": function ($location, $rootScope) {
                 if (!$rootScope.isLoggedin) {
                     $location.path('/');
                 }
             }
-         },
+        },
         templateUrl: 'UI/Home.html',
         controller: 'HomeCtrl',
-        
+
     })
     .when('/Home/About', {
         templateUrl: 'UI/about.html',
@@ -58,7 +58,7 @@ ftmsapp.config(function ($routeProvider,$locationProvider) {
         },
         templateUrl: 'UI/Event.html',
         controller: 'EventCtrl',
-       
+
 
     })
     .when('/Home/Account/addUser', {
@@ -71,7 +71,7 @@ ftmsapp.config(function ($routeProvider,$locationProvider) {
         },
         templateUrl: 'UI/adduser.html',
         controller: 'loginCtrl',
-        
+
     })
     .when('/Funds', {
         resolve: {
@@ -83,7 +83,7 @@ ftmsapp.config(function ($routeProvider,$locationProvider) {
         },
         templateUrl: 'UI/funds.html',
         controller: 'FundCtrl',
-        
+
     })
     .otherwise({
         redirectTo: '/Home'
@@ -91,17 +91,3 @@ ftmsapp.config(function ($routeProvider,$locationProvider) {
 
 });
 
-//ftmsapp.run(['$rootscope', '$location', 'authentication', function ($roorscope, $location, authentication) {
-
-//    $roorscope.$on('$routechangestart', function (event) {
-//        if (!authentication.isloggedin()) {
-//            console.log('denied');
-//            event.preventdefault();
-//            $location.path('/');
-//        }
-//        else {
-//            console.log('allowed');
-            
-//        }
-//    });
-//}]);

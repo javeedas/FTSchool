@@ -2,7 +2,7 @@
 
 
 
-<div style="height:400px; overflow: auto; margin-top:100px">
+<div style="height:400px; overflow: auto; margin-top:100px" ng-init="GetTeam()">
     <div style="height: 250px;">
         <table class="table table-striped" border="1">
             <thead>
@@ -14,6 +14,13 @@
                     <th>Tool</th>
                     <th colspan="2">Actions</th>
 
+                </tr>
+                <tr ng-repeat="member in members">
+                    <td>{{member.empId}}</td>
+                    <td>{{member.empName}}</td>
+                    <td>{{member.category}}</td>
+                    <td>{{member.tool}}</td>
+                    <td>update</td>
                 </tr>
             </thead>
             <tbody>

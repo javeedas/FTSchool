@@ -124,11 +124,19 @@ app.controller('TeamCtrl',['$rootScope', '$scope', 'Ajaxservice', function ($roo
         var url = 'Ftms/TeamDetails';
         Ajaxservice.getService(url).then(function (response) {
             $scope.members = response.data;
-            console.log(response);
-        })
+            console.log(response.data);
+        });
         
     }
-
+    //Deleting member
+    $scope.DeleteMember = function (empid) {
+        var url = 'Ftms/DeleteMember/empId/' + empid;  
+        Ajaxservice.deleteService(url).then(function (response) {
+            console.log(response);
+            $scope.GetTeam();
+            alert("member delted successfully");
+        })
+    }
 
 
 }]);

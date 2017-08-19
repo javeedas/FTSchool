@@ -20,7 +20,10 @@
                     <td>{{member.empName}}</td>
                     <td>{{member.category}}</td>
                     <td>{{member.tool}}</td>
-                    <td>update</td>
+                    <td>
+                        <a href="#" ng-click="Edit(member.empId)"><u>Edit</u></a>&nbsp;&nbsp;&nbsp;|
+                        <a href="#" ng-click="DeleteMember(member.empId)"><u>Delete</u></a>
+                    </td>
                 </tr>
             </thead>
             <tbody>

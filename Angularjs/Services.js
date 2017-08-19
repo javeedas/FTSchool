@@ -28,7 +28,12 @@ app.factory('Ajaxservice', function ($http) {
         })
 
     }
-
+    service.deleteService = function (url) {
+        return $http({
+            method: 'delete',
+            url:baseUrl+url
+        })
+    }
     return service;
 });
 

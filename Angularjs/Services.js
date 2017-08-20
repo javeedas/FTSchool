@@ -1,7 +1,7 @@
 ﻿var app = angular.module('ftms.Services', []);
 
 app.factory('Ajaxservice', function ($http) {
-    var baseUrl = 'http://localhost:52743/api/';
+    var baseUrl = 'http://192.168.0.9/api/Ftms/';
     var service = {};
     service.getService = function (url, params) {
         return $http({
@@ -34,6 +34,12 @@ app.factory('Ajaxservice', function ($http) {
             url:baseUrl+url
         })
     }
+    service.putService = function (url) {
+        return $http({
+            method: 'PUT',
+            url:baseUrl+url
+})
+}
     return service;
 });
 

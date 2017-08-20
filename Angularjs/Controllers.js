@@ -121,13 +121,43 @@ app.controller('EventCtrl', function ($rootScope, $scope) {
 app.controller('TeamCtrl',['$rootScope', '$scope', 'Ajaxservice', function ($rootScope, $scope, Ajaxservice) {
     $rootScope.title = "Team";
     $scope.GetTeam = function () {
-        var url = 'Ftms/TeamDetails';
+        var url = 'TeamDetails';
         Ajaxservice.getService(url).then(function (response) {
             $scope.members = response.data;
             console.log(response.data);
         });
         
     }
+
+    // Adding Member
+    $scope.AddMember = function () {
+        $scope.member = {};
+        $scope.member.empId = $scope.empId;
+        $scope.member.empName = $scope.empName;
+        $scope.member.category = $scope.empDept;
+        $scope.member.tool = $scope.empTool;
+        $scope.member.designation = $scope.empDesig;
+        $scope.member.dob = $scope.empDob;
+        var url = 'AddMember';
+        var params = $scope.member;
+        Ajaxservice.postService(url, params).then(function (response) {
+            console.log(response);
+            $scope.empCreated = true;
+            $scope.empId = null;
+            $scope.empName = null;
+            $scope.empDept = null;
+            $scope.empDesig = null;
+            $scope.empDob = null;
+            $scope.empTool = null;
+            $scope.addEmployeeForm.$setPristine();
+            $scope.GetTeam();
+        })
+        , function () {
+
+            $scope.eventNotCreated = true;
+        }
+
+    };
     //Deleting member
     $scope.DeleteMember = function (empid) {
         var url = 'Ftms/DeleteMember/empId/' + empid;  

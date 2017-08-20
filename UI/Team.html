@@ -1,9 +1,9 @@
 ﻿
-
-
-
 <div style="height:400px; overflow: auto; margin-top:100px" ng-init="GetTeam()">
-    <div style="height: 250px;">
+    <div>
+        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#addEmployeeModal">AddEmployee</a>
+    </div>
+    <div style="height: 250px;margin-top:20px">
         <table class="table table-striped" border="1">
             <thead>
                 <tr>
@@ -11,6 +11,8 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Department</th>
+                    <th>Designation</th>
+                    <th>Dob</th>
                     <th>Tool</th>
                     <th colspan="2">Actions</th>
 
@@ -19,6 +21,8 @@
                     <td>{{member.empId}}</td>
                     <td>{{member.empName}}</td>
                     <td>{{member.category}}</td>
+                    <td>{{member.designation}}</td>
+                    <td>{{member.dob}}</td>
                     <td>{{member.tool}}</td>
                     <td>
                         <a href="#" ng-click="Edit(member.empId)"><u>Edit</u></a>&nbsp;&nbsp;&nbsp;|
@@ -34,5 +38,88 @@
 
 
         
+    </div>
+
+    <!--//modal for adding employee-->
+    <div id="addEmployeeModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Employee</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row main">
+                            <div class="main-login main-center">
+                                <h5>Employee Creation</h5>
+                                <form name="addEmployeeForm" novalidate>
+
+                                    <div class="form-group" ng-class="{'has-error':addEmployeeForm.empId.$invalid && !addEmployeeForm.empId.$pristine }">
+                                        <label for="id">Id</label>
+                                        <input type="text" class="form-control" name="empId" id="empId" placeholder="EmployeeID" ng-model="empId"  required style="width: 45%;">
+                                        <p ng-show="addEmployeeForm.empId.$invalid && !addEmployeeForm.empId.$pristine" class="help-block">empId is required.</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':addEmployeeForm.ename.$invalid && !addEmployeeForm.ename.$pristine}">
+                                        <label for="ename">EmployeeName</label>
+                                        <input type="text" class="form-control" id="ename" name="ename" ng-model="empName"
+                                               placeholder="EmployeeName"  required style="width:45%" />
+                                        <p ng-show="addEmployeeForm.ename.$invalid && !addEmployeeForm.ename.$pristine" class="help-block">Employee name is required</p>
+                                       
+
+
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':addEmployeeForm.empDept.$invalid && !addEmployeeForm.empDept.$pristine }">
+                                        <label for="empDept">Department</label>
+
+                                        <input type="text" class="form-control" name="empDept" id="empDept" placeholder="Department" ng-model="empDept"  required style="width:45%" />
+                                        <p ng-show="addEmployeeForm.empDept.$invalid && !addEmployeeForm.empDept.$pristine" class="help-block">Department is required</p>
+
+
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':addEmployeeForm.empDesig.$invalid && !addEmployeeForm.empDesig.$pristine }">
+                                        <label for="empDesig">Designation</label>
+
+                                        <input type="text" class="form-control" name="empDesig" id="empDesig" placeholder="Designation" ng-model="empDesig" required style="width:45%" />
+                                        <p ng-show="addEmployeeForm.empDesig.$invalid && !addEmployeeForm.empDesig.$pristine" class="help-block">Designation is required</p>
+
+
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':addEmployeeForm.empDob.$invalid && !addEmployeeForm.empDob.$pristine}">
+                                        <label for="empdob">DateofBirth</label>
+                                        <input type="date" class="form-control" id="empDob" name="empDob" ng-model="empDob"
+                                               placeholder="dd-MM-yyyy" min="1900-01-01" required style="width:45%" />
+                                        <p ng-show="addEmployeeForm.empDob.$invalid && !addEmployeeForm.empDob.$pristine" class="help-block">DateofBirth is required</p>
+                                        <!--<p ng-show="eventForm.edate.$error.pattern" class="help-block">invalid date</p>-->
+
+
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error':addEmployeeForm.empTool.$invalid && !addEmployeeForm.empTool.$pristine }">
+                                        <label for="empTool">Tool</label>
+
+                                        <input type="text" class="form-control" name="empTool" id="empTool" placeholder="Tool" ng-model="empTool" required style="width:45%" />
+                                        <p ng-show="addEmployeeForm.empTool.$invalid && !addEmployeeForm.empTool.$pristine" class="help-block">Tool is required</p>
+
+
+                                    </div>
+
+
+
+
+                                    <div class="form-group">
+                                        <button type="submit" id="btnsubmiteForm" class="btn btn-success btn-lg btn-block login-button" ng-disabled="addEmployeeForm.$invalid" ng-click="AddMember()" style="width:45%">AddEmployee</button>
+                                    </div>
+                                    <p ng-show="empCreated">Member added successfully</p>
+                                    <p ng-show="empNotCreated">Error occured in adding Member</p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

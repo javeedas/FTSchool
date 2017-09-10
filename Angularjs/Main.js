@@ -85,6 +85,17 @@ ftmsapp.config(function ($routeProvider, $locationProvider) {
         controller: 'FundCtrl',
 
     })
+        .when('/Home/Upload', {
+            resolve: {
+                "check": function ($location, $rootScope) {
+                    if (!$rootScope.isLoggedin) {
+                        $location.path('/');
+                    }
+                }
+            },
+            templateUrl: 'UI/upload.html',
+            controller:'uploadCtrl',
+        })
     .otherwise({
         redirectTo: '/Home'
     });

@@ -1,7 +1,15 @@
 ﻿var app = angular.module('ftms.controllers', ['ftms.Services', 'ngMaterial']);
-app.controller('loginCtrl', ['$rootScope', '$scope', '$location', 'Ajaxservice', function ($rootScope, $scope, $location, Ajaxservice) {
+app.controller('loginCtrl',['$rootScope', '$scope', '$location', 'Ajaxservice', function ($rootScope, $scope, $location, Ajaxservice) {
 
     $rootScope.title = "Login";
+
+    //watch example
+
+ 
+    //$scope.$watch('uName',function(newValue,oldValue){
+    //    $scope.counter = $scope.counter + 1;
+    //});
+    
 
     $scope.validateUser = function () {
         $scope.haserror = false;
@@ -108,7 +116,7 @@ app.controller('loginCtrl', ['$rootScope', '$scope', '$location', 'Ajaxservice',
     }
 
 
-}]);
+    }]);
 app.controller('HomeCtrl', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $loaction) {
  
     $scope.msg = "you are in home page";
